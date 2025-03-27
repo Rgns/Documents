@@ -1,0 +1,54 @@
+1️⃣ Install protoc (Protocol Buffers Compiler)
+
+Step 1: Download protoc
+	1. Visit the official Protobuf releases page:
+		https://github.com/protocolbuffers/protobuf/releases
+	2. Download the latest Windows binary (protoc-<version>-win64.zip).
+	3. Extract the ZIP file to C:\protoc\ (or any preferred location).
+
+
+Step 2: Add protoc to the system PATH
+	1. Open Command Prompt (cmd) and type:
+		echo %PATH%
+	2. Add C:\protoc\bin\ to your system PATH:
+		- Press Win + R, type sysdm.cpl, and press Enter.
+		- Go to Advanced → Environment Variables.
+		- Under System Variables, find Path, and click Edit.
+		- Click New, and add C:\protoc\bin\.
+		- Click OK → OK → OK.
+	3. Restart your terminal and verify installation:
+		protoc --version
+		✅Expected output: libprotoc <version>
+
+
+
+2️⃣ Install Go Plugins (protoc-gen-go, protoc-gen-go-grpc)
+
+Step 1: Install Go (if not installed)
+	- Download and install Go from https://go.dev/dl/.
+	- Verify installation:
+			go version
+			✅ Expected output: go version go1.x.x windows/amd64
+
+Step 2: Install protoc-gen-go
+	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+	#The binary will be installed at %USERPROFILE%\go\bin\protoc-gen-go.
+
+Step 3: Install protoc-gen-go-grpc
+	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+	#This installs the gRPC plugin for Protobuf.
+
+Step 4: Add Go binaries to PATH
+	Add %USERPROFILE%\go\bin\ to your system PATH (same steps as protoc).
+
+Step 5: Verify plugin installation
+	protoc-gen-go --version
+	protoc-gen-go-grpc --version
+
+
+3️⃣ Compile .proto Files
+	Once everything is installed, use this command to generate Go code:
+	protoc --go_out=. --go-grpc_out=. myproto.proto
+
+
+✅ Done! You have successfully installed Protobuf and the required Go plugins on Windows. 🚀
